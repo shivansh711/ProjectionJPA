@@ -7,10 +7,12 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Component
 @Entity
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,4 +36,11 @@ public class PatientEntity {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "patient_insurance", unique = true)
+    private InsuranceEntity insurance; // owning side
+
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)
+    private Set<AppointmentEntity> appointments = new HashSet<>();//inverse side
 }

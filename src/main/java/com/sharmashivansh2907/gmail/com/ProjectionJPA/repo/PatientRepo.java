@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface PatientRepo extends JpaRepository<PatientEntity,Long> {
 
     @Query("""

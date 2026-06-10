@@ -5,6 +5,7 @@ import com.sharmashivansh2907.gmail.com.ProjectionJPA.DTO.CPatientInfo;
 import com.sharmashivansh2907.gmail.com.ProjectionJPA.DTO.IPatientInfo;
 import com.sharmashivansh2907.gmail.com.ProjectionJPA.entity.PatientEntity;
 import com.sharmashivansh2907.gmail.com.ProjectionJPA.repo.PatientRepo;
+import com.sharmashivansh2907.gmail.com.ProjectionJPA.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,9 @@ public class PatientServiceTest {
 
     @Autowired
     private PatientRepo patientRepo;
+
+    @Autowired
+    private PatientService patientService;
 
     @Test
     public void testPatient(){
@@ -59,9 +63,15 @@ public class PatientServiceTest {
         System.out.println(rowEffectedAfterTheUpdate);
     }
 
+//    @Test
+//    public void testDeletePatient(){
+//        int rowEffectedAfterTheDelete = patientRepo.deletePatientWithId(13L);
+//        System.out.println(rowEffectedAfterTheDelete);
+//    }
+
+
     @Test
     public void testDeletePatient(){
-        int rowEffectedAfterTheDelete = patientRepo.deletePatientWithId(13L);
-        System.out.println(rowEffectedAfterTheDelete);
+          patientService.deletePatient(2L);
     }
 }
