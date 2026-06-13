@@ -5,6 +5,7 @@ import com.sharmashivansh2907.gmail.com.ProjectionJPA.DTO.CPatientInfo;
 import com.sharmashivansh2907.gmail.com.ProjectionJPA.DTO.IPatientInfo;
 import com.sharmashivansh2907.gmail.com.ProjectionJPA.entity.PatientEntity;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -43,6 +44,14 @@ public interface PatientRepo extends JpaRepository<PatientEntity,Long> {
     @Query("DELETE PatientEntity p where p.id = :ID")
     int deletePatientWithId(@Param("ID") Long ID);
 
+    @Query("""
+       SELECT DISTINCT p
+       FROM PatientEntity p
+       LEFT JOIN FETCH p.appointments
+       """)
+    List<PatientEntity> getALlPatientWithAppointment(); // this is N+1 query optimization
 
+    @EntityGraph(attributePaths = {"appointments"})
+    List<PatientEntity> findAll(); // this is N+1 query optimization
 
 }

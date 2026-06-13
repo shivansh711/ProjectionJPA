@@ -36,7 +36,7 @@ public class DoctorEntity {
     @OneToMany(mappedBy = "doctor")
     private Set<AppointmentEntity> appointment = new HashSet<>(); // inverse side
 
-    @OneToOne(mappedBy = "headDoctor")
+    @OneToOne(mappedBy = "headDoctor", fetch = FetchType.LAZY)
     private DepartmentEntity department;
 
 }

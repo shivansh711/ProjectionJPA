@@ -32,5 +32,15 @@ public class InsuranceService {
         return insurance;
     }
 
+    @Transactional
+    public PatientEntity removeInsuranceToPatient(Long patientID){
+
+        PatientEntity patient = patientRepo.findById(patientID).orElseThrow();
+        // patient and doctor is in the persistence state because they were loaded through Hibernate
+
+        patient.setInsurance(null);
+
+        return patient;
+    }
 
 }

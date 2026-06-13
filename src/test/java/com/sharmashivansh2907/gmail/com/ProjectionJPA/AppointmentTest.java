@@ -21,7 +21,7 @@ public class AppointmentTest {
                 .appointmentTime(LocalDate.of(2025,1,1))
                 .build();
 
-        var createnewAppointment = appointmentService.createANewAppointment(appointment,2L,2L);
+        var createnewAppointment = appointmentService.createANewAppointment(appointment,3L,4L);
         System.out.println(createnewAppointment);
     }
 

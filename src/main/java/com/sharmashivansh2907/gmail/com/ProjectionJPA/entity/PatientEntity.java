@@ -15,6 +15,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "patient")
@@ -37,10 +38,12 @@ public class PatientEntity {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "patient_insurance", unique = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_insurance", unique =true)
+    @ToString.Exclude
     private InsuranceEntity insurance; // owning side
 
-    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @ToString.Exclude
     private Set<AppointmentEntity> appointments = new HashSet<>();//inverse side
 }

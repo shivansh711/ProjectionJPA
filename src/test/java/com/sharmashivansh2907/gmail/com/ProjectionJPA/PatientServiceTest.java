@@ -63,6 +63,14 @@ public class PatientServiceTest {
         System.out.println(rowEffectedAfterTheUpdate);
     }
 
+    @Test
+    public void testgetAllPatient(){
+        List<PatientEntity> patientList = patientRepo.findAll();
+        for(PatientEntity p : patientList){
+            System.out.println(p);
+        }
+    }
+
 //    @Test
 //    public void testDeletePatient(){
 //        int rowEffectedAfterTheDelete = patientRepo.deletePatientWithId(13L);

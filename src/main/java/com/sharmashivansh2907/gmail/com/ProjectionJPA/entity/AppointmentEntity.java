@@ -31,11 +31,13 @@ public class AppointmentEntity {
 
     @ManyToOne(fetch = FetchType.LAZY) // with Lazy fetch hibernate will not load patient entity
     @JsonIgnore
+    @ToString.Exclude
     @JoinColumn(name = "patient_appointment", nullable = false)
     private PatientEntity patient; // owning side
 
     @ManyToOne(fetch = FetchType.LAZY)// with Lazy fetch hibernate will not load doctor entity
     @JsonIgnore
+    @ToString.Exclude
     @JoinColumn(nullable = false)
     private DoctorEntity doctor; // owning side
 }
